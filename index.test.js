@@ -82,4 +82,9 @@ describe('User, Board, and Cheese Models', () => {
         expect(boards.length).toBe(2);
     })
 
+    test('eager loading', async () => {
+        const boards = await Board.findAll({include: [{model: Cheese}]});
+        expect(boards[0].Cheeses[0].title).toBe("Pepper Jack");
+    })
+
 })
